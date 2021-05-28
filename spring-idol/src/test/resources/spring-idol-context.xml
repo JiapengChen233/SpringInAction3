@@ -21,4 +21,7 @@
 
     <!-- 通过工厂方法创建Bean -->
     <bean id="theStage" class="com.cjp.Stage" factory-method="getInstance"/>
+
+    <!-- 声明多例 -->
+    <bean id="ticket" class="com.cjp.Ticket" scope="prototype"/>
 </beans>

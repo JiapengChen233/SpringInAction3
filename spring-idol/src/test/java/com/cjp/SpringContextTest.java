@@ -44,4 +44,11 @@ public class SpringContextTest {
         Stage theStage = (Stage) ctx.getBean("theStage");
         assertNotNull(theStage);
     }
+
+    @Test
+    public void definePrototype() {
+        Ticket ticket = (Ticket) ctx.getBean("ticket");
+        Ticket ticket2 = (Ticket) ctx.getBean("ticket");
+        assertNotEquals(ticket, ticket2);
+    }
 }
