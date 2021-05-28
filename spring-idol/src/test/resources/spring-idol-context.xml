@@ -2,8 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
 
     <!-- 通过默认构造器创建Bean -->
     <bean id="duke" class="com.cjp.Juggler"/>
@@ -128,5 +131,44 @@
     <bean id="circle" class="com.cjp.Circle">
         <property name="area" value="#{T(java.lang.Math).PI * 2 ^ 2}"/>
     </bean>
+
+    <!-- 在SpEL中筛选集合 -->
+    <util:list id="cities">
+        <bean class="com.cjp.City"
+              p:name="Chicago" p:state="IL" p:population="2853114"/>
+        <bean class="com.cjp.City"
+              p:name="Atlanta" p:state="GA" p:population="537958"/>
+        <bean class="com.cjp.City"
+              p:name="Dallas" p:state="TX" p:population="1279910"/>
+        <bean class="com.cjp.City"
+              p:name="Houston" p:state="TX" p:population="2242193"/>
+        <bean class="com.cjp.City"
+              p:name="Odessa" p:state="TX" p:population="90943"/>
+        <bean class="com.cjp.City"
+              p:name="EL Paso" p:state="TX" p:population="613190"/>
+        <bean class="com.cjp.City"
+              p:name="Jal" p:state="NM" p:population="1996"/>
+        <bean class="com.cjp.City"
+              p:name="Las cruces" p:state="NM" p:population="91865"/>
+    </util:list>
+
+    <!-- 访问集合成员 -->
+    <bean id="cityGroup" class="com.cjp.Cities">
+        <property name="cities">
+            <list>
+                <value>#{cities[0]}</value>
+                <value>#{cities[T(java.lang.Math).random() * cities.size()]}</value>
+                <value>#{cities.^[population gt 100000]}</value> <!-- 人口大于10万的城市中取第一个 -->
+                <value>#{cities.$[population gt 100000]}</value> <!-- 人口大于10万的城市中取最后一个 -->
+            </list>
+        </property>
+    </bean>
+
+    <!-- 查询集合成员 -->
+    <bean id="country" class="com.cjp.Country">
+        <property name="cityNames" value="#{cities.![name]}"/> <!-- 投影集合 -->
+        <property name="cities" value="#{cities.?[population gt 100000]}"/>
+    </bean>
+
 
 </beans>

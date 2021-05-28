@@ -7,6 +7,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -133,7 +135,22 @@ public class SpringContextTest {
     @Test
     public void calculateBySpEL() {
         Circle circle = (Circle) ctx.getBean("circle");
-        System.out.println("circle's area is: " + circle.getArea());;
+        System.out.println("circle's area is: " + circle.getArea());
+    }
+
+    @Test
+    public void accessCollectionMembersBySpEL() {
+        Cities cities = (Cities) ctx.getBean("cityGroup");
+        for (City c : cities.getCities()) {
+            System.out.println(c);
+        }
+    }
+
+    @Test
+    public void mapBySpEL() {
+        Country country = (Country) ctx.getBean("country");
+        List<String> cityNames = country.getCityNames();
+        System.out.println(cityNames);
     }
 
 }
