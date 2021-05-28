@@ -106,4 +106,34 @@ public class SpringContextTest {
         assertNull(artist.getName());
     }
 
+    @Test
+    public void useOtherBeanPropertiesBySpEL() {
+        Performer performer = (Performer) ctx.getBean("carl");
+        performer.perform();
+    }
+
+    @Test
+    public void useOtherBeanMethodsBySpEL() {
+        Performer performer = (Performer) ctx.getBean("carl2");
+        performer.perform();
+    }
+
+    @Test
+    public void checkNullBySpEL() {
+        Performer performer = (Performer) ctx.getBean("carl3");
+        performer.perform();
+    }
+
+    @Test
+    public void useStaticClassBySpEL() {
+        Performer performer = (Performer) ctx.getBean("carl4");
+        performer.perform();
+    }
+
+    @Test
+    public void calculateBySpEL() {
+        Circle circle = (Circle) ctx.getBean("circle");
+        System.out.println("circle's area is: " + circle.getArea());;
+    }
+
 }

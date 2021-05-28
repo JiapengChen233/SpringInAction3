@@ -101,4 +101,32 @@
             <null/>
         </property>
     </bean>
+
+    <!-- 使用SpEL表达式装配 -->
+    <!-- 引用其他bean的属性 -->
+    <bean id="carl" class="com.cjp.Instrumentalist">
+        <property name="song" value="#{kenny.song}"/>
+    </bean>
+
+    <!-- 引用其他bean的方法 -->
+    <bean id="songSelector" class="com.cjp.SongSelect"/>
+    <bean id="carl2" class="com.cjp.Instrumentalist">
+        <property name="song" value="#{songSelector.selectSong(1)}"/>
+    </bean>
+
+    <!-- 检查Null -->
+    <bean id="carl3" class="com.cjp.Instrumentalist">
+        <property name="song" value="#{songSelector.selectSong(1)?.toUpperCase()}"/>
+    </bean>
+
+    <!-- 操作类 -->
+    <bean id="carl4" class="com.cjp.Instrumentalist">
+        <property name="song" value="#{songSelector.selectSong(T(java.lang.Math).random())}"/>
+    </bean>
+
+    <!-- 进行数值计算 -->
+    <bean id="circle" class="com.cjp.Circle">
+        <property name="area" value="#{T(java.lang.Math).PI * 2 ^ 2}"/>
+    </bean>
+
 </beans>
