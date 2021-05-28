@@ -27,4 +27,13 @@
 
     <!-- 初始化和销毁bean执行指定的方法 -->
     <bean id="auditorium" class="com.cjp.Auditorium" init-method="turnOnLights" destroy-method="turnOffLights"/>
+
+    <!-- 注入Bean属性 -->
+    <bean id="saxophone" class="com.cjp.Saxophone"/>
+    <bean id="kenny" class="com.cjp.Instrumentalist">
+        <property name="song" value="Jingle Bells"/>
+        <property name="instrument" ref="saxophone"/>
+    </bean>
+
+
 </beans>

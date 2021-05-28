@@ -57,4 +57,11 @@ public class SpringContextTest {
         Auditorium auditorium = (Auditorium) ctx.getBean("auditorium");
         assertNotNull(auditorium);
     }
+
+    @Test
+    public void injectBeanProperties() {
+        Performer performer = (Performer) ctx.getBean("kenny");
+        performer.perform();
+    }
+
 }
