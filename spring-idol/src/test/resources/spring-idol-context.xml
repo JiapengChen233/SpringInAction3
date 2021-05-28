@@ -11,4 +11,11 @@
     <bean id="duke2" class="com.cjp.Juggler">
         <constructor-arg value="15"/>
     </bean>
+
+    <!-- 通过构造器注入对象引用 -->
+    <bean id="sonnet29" class="com.cjp.Sonnet29"/>
+    <bean id="poeticDuke" class="com.cjp.PoeticJuggler">
+        <constructor-arg value="15"/>
+        <constructor-arg ref="sonnet29"/>
+    </bean>
 </beans>

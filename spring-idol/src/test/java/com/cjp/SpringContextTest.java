@@ -31,4 +31,12 @@ public class SpringContextTest {
         assertNotNull(duke);
         duke.perform();
     }
-}   
+
+    @Test
+    public void injectObjectReferenceByConstructor() {
+        Performer poeticDuke = (Performer) ctx.getBean("poeticDuke");
+        assertNotNull(poeticDuke);
+        poeticDuke.perform();
+    }
+
+}
