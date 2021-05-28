@@ -100,4 +100,10 @@ public class SpringContextTest {
         performer.perform();
     }
 
+    @Test
+    public void autowireNULL() {
+        Artist artist = (Artist) ctx.getBean("artist");
+        assertNull(artist.getName());
+    }
+
 }

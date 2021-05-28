@@ -95,4 +95,10 @@
         </property>
     </bean>
 
+    <!-- 装配空值 -->
+    <bean id="artist" class="com.cjp.Artist">
+        <property name="name">
+            <null/>
+        </property>
+    </bean>
 </beans>
