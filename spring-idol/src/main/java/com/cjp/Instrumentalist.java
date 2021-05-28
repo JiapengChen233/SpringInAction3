@@ -2,7 +2,7 @@ package com.cjp;
 
 public class Instrumentalist implements Performer {
     private String song;
-    
+
     private Instrument instrument;
 
     @Override
