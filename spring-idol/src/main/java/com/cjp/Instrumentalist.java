@@ -1,14 +1,8 @@
 package com.cjp;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-
-@Component
-@Qualifier("instrumentalist")
 public class Instrumentalist implements Performer {
     private String song;
-    @Autowired
+
     private Instrument instrument;
 
     @Override
