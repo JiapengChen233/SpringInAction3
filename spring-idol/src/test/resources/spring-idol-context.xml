@@ -48,4 +48,51 @@
     <bean id="kenny3" class="com.cjp.Instrumentalist"
           p:song="Jingle Bells"
           p:instrument-ref="saxophone"/>
+
+    <!-- 装配集合：List -->
+    <bean id="guitar" class="com.cjp.Guitar"/>
+    <bean id="cymbal" class="com.cjp.Cymbal"/>
+    <bean id="hank" class="com.cjp.OneManBand">
+        <property name="instruments">
+            <list>
+                <ref bean="saxophone"/>
+                <ref bean="guitar"/>
+                <ref bean="cymbal"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 装配集合：Set -->
+    <bean id="hank2" class="com.cjp.OneManBand">
+        <property name="instruments">
+            <set>
+                <ref bean="saxophone"/>
+                <ref bean="guitar"/>
+                <ref bean="cymbal"/>
+            </set>
+        </property>
+    </bean>
+
+    <!-- 装配集合：Map -->
+    <bean id="hank3" class="com.cjp.OneManBand2">
+        <property name="instruments">
+            <map>
+                <entry key="saxophone" value-ref="saxophone"/>
+                <entry key="guitar" value-ref="guitar"/>
+                <entry key="cymbal" value-ref="cymbal"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- 装配集合：Properties -->
+    <bean id="hank4" class="com.cjp.OneManBand3">
+        <property name="instruments">
+            <props>
+                <prop key="saxophone">TOOT TOOT TOOT</prop>
+                <prop key="guitar">STRUM STRUM STRUM</prop>
+                <prop key="cymbal">CRASH CRASH CRASH</prop>
+            </props>
+        </property>
+    </bean>
+
 </beans>

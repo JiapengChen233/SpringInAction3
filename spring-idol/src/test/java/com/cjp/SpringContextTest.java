@@ -76,4 +76,28 @@ public class SpringContextTest {
         performer.perform();
     }
 
+    @Test
+    public void autowireList() {
+        Performer performer = (Performer) ctx.getBean("hank");
+        performer.perform();
+    }
+
+    @Test
+    public void autowireSet() {
+        Performer performer = (Performer) ctx.getBean("hank2");
+        performer.perform();
+    }
+
+    @Test
+    public void autowireMap() {
+        Performer performer = (Performer) ctx.getBean("hank3");
+        performer.perform();
+    }
+
+    @Test
+    public void autowireProperties() {
+        Performer performer = (Performer) ctx.getBean("hank4");
+        performer.perform();
+    }
+
 }
