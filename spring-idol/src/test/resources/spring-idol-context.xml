@@ -24,4 +24,7 @@
 
     <!-- 声明多例 -->
     <bean id="ticket" class="com.cjp.Ticket" scope="prototype"/>
+
+    <!-- 初始化和销毁bean执行指定的方法 -->
+    <bean id="auditorium" class="com.cjp.Auditorium" init-method="turnOnLights" destroy-method="turnOffLights"/>
 </beans>

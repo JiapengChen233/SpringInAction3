@@ -51,4 +51,10 @@ public class SpringContextTest {
         Ticket ticket2 = (Ticket) ctx.getBean("ticket");
         assertNotEquals(ticket, ticket2);
     }
+
+    @Test
+    public void executeDefinedMethodsWhenInitAndDestroy() {
+        Auditorium auditorium = (Auditorium) ctx.getBean("auditorium");
+        assertNotNull(auditorium);
+    }
 }
