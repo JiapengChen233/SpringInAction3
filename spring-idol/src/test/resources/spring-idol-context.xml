@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
@@ -43,4 +44,8 @@
         </property>
     </bean>
 
+    <!-- 注入Bean属性-使用Spring的命名空间p装配属性 -->
+    <bean id="kenny3" class="com.cjp.Instrumentalist"
+          p:song="Jingle Bells"
+          p:instrument-ref="saxophone"/>
 </beans>

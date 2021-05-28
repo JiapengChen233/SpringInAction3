@@ -70,5 +70,10 @@ public class SpringContextTest {
         performer.perform();
     }
 
+    @Test
+    public void autowireBeanBySpringP() {
+        Performer performer = (Performer) ctx.getBean("kenny3");
+        performer.perform();
+    }
 
 }
