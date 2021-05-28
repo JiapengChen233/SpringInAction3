@@ -6,4 +6,9 @@
 
     <!-- 通过默认构造器创建Bean -->
     <bean id="duke" class="com.cjp.Juggler"/>
+
+    <!-- 通过构造器注入 -->
+    <bean id="duke2" class="com.cjp.Juggler">
+        <constructor-arg value="15"/>
+    </bean>
 </beans>

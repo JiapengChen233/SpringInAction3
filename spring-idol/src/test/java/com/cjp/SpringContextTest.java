@@ -24,4 +24,11 @@ public class SpringContextTest {
         assertNotNull(duke);
         duke.perform();
     }
-}
+
+    @Test
+    public void injectByConstructor() {
+        Performer duke = (Performer) ctx.getBean("duke2");
+        assertNotNull(duke);
+        duke.perform();
+    }
+}   
