@@ -64,4 +64,11 @@ public class SpringContextTest {
         performer.perform();
     }
 
+    @Test
+    public void injectInnerBean() {
+        Performer performer = (Performer) ctx.getBean("kenny2");
+        performer.perform();
+    }
+
+
 }

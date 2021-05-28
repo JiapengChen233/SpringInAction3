@@ -35,5 +35,12 @@
         <property name="instrument" ref="saxophone"/>
     </bean>
 
+    <!-- 注入Bean属性-内部bean -->
+    <bean id="kenny2" class="com.cjp.Instrumentalist">
+        <property name="song" value="Jingle Bells"/>
+        <property name="instrument">
+            <bean class="com.cjp.Saxophone"/>
+        </property>
+    </bean>
 
 </beans>
