@@ -39,4 +39,9 @@ public class SpringContextTest {
         poeticDuke.perform();
     }
 
+    @Test
+    public void createBeanByFactoryMethod() {
+        Stage theStage = (Stage) ctx.getBean("theStage");
+        assertNotNull(theStage);
+    }
 }

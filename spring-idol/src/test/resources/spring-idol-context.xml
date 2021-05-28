@@ -18,4 +18,7 @@
         <constructor-arg value="15"/>
         <constructor-arg ref="sonnet29"/>
     </bean>
+
+    <!-- 通过工厂方法创建Bean -->
+    <bean id="theStage" class="com.cjp.Stage" factory-method="getInstance"/>
 </beans>
