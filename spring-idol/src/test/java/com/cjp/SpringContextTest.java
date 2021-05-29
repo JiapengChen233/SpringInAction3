@@ -8,6 +8,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 import static org.junit.Assert.*;
 
@@ -152,5 +154,26 @@ public class SpringContextTest {
         List<String> cityNames = country.getCityNames();
         System.out.println(cityNames);
     }
+
+    @Test
+    public void getValueFromConfig() {
+        Book book = (Book) ctx.getBean("book");
+        System.out.println("book's name is: " + book.getName());
+    }
+
+    @Test
+    public void getPropertiesFromConfig() {
+        Config config = (Config) ctx.getBean("config");
+        Properties systemEnvironment = config.getSystemEnvironment();
+        for (Map.Entry entry : systemEnvironment.entrySet()) {
+            System.out.println("key: " + entry.getKey() + ", value: " + entry.getValue());
+        }
+        Properties systemProperties = config.getSystemProperties();
+        for (Map.Entry entry : systemProperties.entrySet()) {
+            System.out.println("key: " + entry.getKey() + ", value: " + entry.getValue());
+        }
+        System.out.println("Path is: " + config.getPath());
+    }
+
 
 }
