@@ -13,17 +13,17 @@ import static org.junit.Assert.assertNotNull;
 @ContextConfiguration(locations = {
         "classpath:spring-idol-context4.xml"
 })
-public class SpringContextTest4 {
+public class SpringContextTest5 {
 
     @Autowired
     private ApplicationContext ctx;
 
     @Autowired
-    private Instrumentalist kenny;
+    private Performer performer;
 
     @Test
-    public void autoScanByAnnotation() {
-        assertNotNull(kenny);
-        kenny.perform();
+    public void createAConfig() {
+        assertNotNull(performer);
+        performer.perform();
     }
 }
