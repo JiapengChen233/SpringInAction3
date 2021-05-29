@@ -1,9 +1,12 @@
 package com.cjp;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 
+@Aspect
 public class AroundAudience {
 
+    @Around("com.cjp.Audience.performance()")
     public void watchPerformance(ProceedingJoinPoint joinPoint) {
         try {
             System.out.println("The audience is taking their seats.");

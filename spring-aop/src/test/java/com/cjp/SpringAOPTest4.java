@@ -21,5 +21,10 @@ public class SpringAOPTest4 {
         Performer performer = (Performer) ctx.getBean("eddie");
         performer.perform();
     }
-    
+
+    @Test
+    public void testAopAround() {
+        Performer performer = (Performer) ctx.getBean("eddie");
+        performer.perform();
+    }
 }
