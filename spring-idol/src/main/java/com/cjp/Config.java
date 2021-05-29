@@ -1,11 +1,14 @@
 package com.cjp;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import java.util.Properties;
 
 public class Config {
 
     private Properties systemEnvironment;
     private Properties systemProperties;
+    @Value("#{systemEnvironment['Path']}")
     private String path;
 
     public Properties getSystemEnvironment() {

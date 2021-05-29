@@ -17,4 +17,5 @@
     <bean id="saxophone" class="com.cjp.Saxophone"/>
     <bean id="guitar" class="com.cjp.Guitar"/>
 
+    <bean id="config" class="com.cjp.Config"/>
 </beans>

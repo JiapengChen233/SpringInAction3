@@ -25,4 +25,11 @@ public class SpringContextTest3 {
         kenny.perform();
     }
 
+    @Test
+    public void autowireSimpleValueByAnnotation() {
+        Config config = (Config) ctx.getBean("config");
+        System.out.println("Path is: " + config.getPath());
+    }
+
+
 }
