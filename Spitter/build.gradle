@@ -1,0 +1,38 @@
+apply plugin: 'base'
+apply plugin: 'idea'
+
+allprojects {
+    group = 'com.cjp.spitter'
+    version = '1.0.0.SNAPSHOT'
+
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        mavenCentral()
+    }
+}
+
+ext {
+    junitVersion = '4.12'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    dependencies {
+        compile "org.springframework:spring-context:3.0.0.RELEASE"
+        testCompile "junit:junit:$junitVersion"
+        testCompile "org.springframework:spring-test:3.0.0.RELEASE"
+    }
+
+    [compileJava, compileTestJava]*.options*.compilerArgs = ['-Xlint:all']
+}
+
+project('spitter-domain-plain') {
+    dependencies {
+    }
+}
+
+
+
