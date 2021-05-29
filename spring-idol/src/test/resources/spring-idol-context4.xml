@@ -2,11 +2,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd ">
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:properties id="settings" location="settings.properties"/>
 
     <!-- 自动检测Bean -->
-    <context:component-scan base-package="com.cjp"/>
+    <context:component-scan base-package="com.cjp">
+        <context:include-filter type="assignable" expression="com.cjp.Instrumentalist"/>
+    </context:component-scan>
 </beans>

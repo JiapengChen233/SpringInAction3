@@ -2,10 +2,10 @@ package com.cjp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 
-@Component
 public class Instrumentalist implements Performer {
+    @Value("#{settings['song.name']}")
     private String song;
     @Autowired
     @Qualifier("guitar")
