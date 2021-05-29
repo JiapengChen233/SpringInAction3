@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="eddie" class="com.cjp.Instrumentalist">
+        <property name="song" value="Kill this love"/>
+        <property name="instrument">
+            <bean class="com.cjp.Guitar"/>
+        </property>
+    </bean>
+
+    <bean id="audience" class="com.cjp.Audience"/>
+
+    <!-- 声明一个切面 -->
+    <aop:config>
+        <aop:aspect ref="audience">
+            <!-- 定义切点 -->
+            <aop:pointcut id="performance" expression="execution(* com.cjp.Performer.perform(..))"/>
+            <!-- 引用切点 -->
+            <aop:before method="takeSeats" pointcut-ref="performance"/>
+            <aop:before method="turnOffCellPhones" pointcut-ref="performance"/>
+            <aop:after-returning method="applaud" pointcut-ref="performance"/>
+            <aop:after-throwing method="demandRefund" pointcut-ref="performance"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
