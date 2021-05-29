@@ -23,5 +23,10 @@
             <!-- 声明环绕通知 -->
             <aop:around method="watchPerformance" pointcut-ref="performance"/>
         </aop:aspect>
+
+        <aop:aspect>
+            <aop:declare-parents types-matching="com.cjp.Performer+" implement-interface="com.cjp.Contestant"
+                                 default-impl="com.cjp.GraciousContestant"/>
+        </aop:aspect>
     </aop:config>
 </beans>

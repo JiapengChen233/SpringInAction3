@@ -21,4 +21,10 @@ public class SpringAOPTest2 {
         Performer performer = (Performer) ctx.getBean("eddie");
         performer.perform();
     }
+
+    @Test
+    public void testInjectNewFunction() {
+        Contestant performer = (Contestant) ctx.getBean("eddie");
+        performer.receiveAward();
+    }
 }
