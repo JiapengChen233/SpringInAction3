@@ -36,4 +36,10 @@ public class SpringAOPTest4 {
         volunteer.thinkOfSomething("Queen of Hearts");
         Assert.assertEquals("Queen of Hearts", magician.getThoughts());
     }
+
+    @Test
+    public void testInjectNewFunction() {
+        Contestant performer = (Contestant) ctx.getBean("eddie");
+        performer.receiveAward();
+    }
 }

@@ -20,5 +20,7 @@
 
     <bean id="magician" class="com.cjp.Magician"/>
 
+    <bean class="com.cjp.ContestantIntroducer"/>
+
     <aop:aspectj-autoproxy/>
 </beans>
