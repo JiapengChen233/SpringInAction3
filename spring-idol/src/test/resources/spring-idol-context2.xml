@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 自动装配-byName -->
+    <bean id="kenny" class="com.cjp.Instrumentalist" autowire="byName">
+        <property name="song" value="Jingle Bells"/>
+    </bean>
+
+    <bean id="instrument" class="com.cjp.Saxophone"/>
+
+    <!-- 自动装配-byType -->
+    <bean id="kenny2" class="com.cjp.Instrumentalist" autowire="byType">
+        <property name="song" value="Jingle Bells"/>
+    </bean>
+
+    <!-- 自动装配-constructor -->
+    <bean id="poeticDuke" class="com.cjp.PoeticJuggler" autowire="constructor"/>
+    <bean id="sonnet29" class="com.cjp.Sonnet29"/>
+</beans>
