@@ -1,5 +1,6 @@
 package com.cjp;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,13 @@ public class SpringAOPTest4 {
     public void testAopAround() {
         Performer performer = (Performer) ctx.getBean("eddie");
         performer.perform();
+    }
+
+    @Test
+    public void testTransmitParametersForAdvice() {
+        Thinker volunteer = (Thinker) ctx.getBean("volunteer");
+        MindReader magician = (MindReader) ctx.getBean("magician");
+        volunteer.thinkOfSomething("Queen of Hearts");
+        Assert.assertEquals("Queen of Hearts", magician.getThoughts());
     }
 }

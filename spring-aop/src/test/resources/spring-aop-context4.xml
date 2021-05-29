@@ -16,5 +16,9 @@
 
     <bean id="audience" class="com.cjp.Audience"/>
 
+    <bean id="volunteer" class="com.cjp.Volunteer"/>
+
+    <bean id="magician" class="com.cjp.Magician"/>
+
     <aop:aspectj-autoproxy/>
 </beans>
