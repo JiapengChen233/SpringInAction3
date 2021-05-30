@@ -1,3 +1,4 @@
 rootProject.name = 'Spitter'
 include 'spitter-domain-plain'
+include 'spitter-persistence-common'
 

@@ -34,5 +34,12 @@ project('spitter-domain-plain') {
     }
 }
 
+project('spitter-persistence-common') {
+    dependencies {
+        compile project(':spitter-domain-plain')
+        compile "org.springframework:spring-jdbc:3.0.0.RELEASE"
+        compile "org.hsqldb:hsqldb:2.4.1"
+    }
+}
 
 
