@@ -17,10 +17,10 @@ import static org.springframework.test.jdbc.SimpleJdbcTestUtils.countRowsInTable
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "classpath:test-persistence-context2.xml",
+        "classpath:test-persistence-context.xml",
         "classpath:test-dataSource-context.xml"
 })
-public class SimpleJdbcTemplateSpitterDaoTest {
+public class NamedParameterJdbcTemplateSpitterDaoTest {
 
     @Autowired
     private SimpleJdbcTemplate jdbcTemplate;
