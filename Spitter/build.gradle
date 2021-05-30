@@ -43,4 +43,9 @@ project('spitter-persistence-common') {
     }
 }
 
-
+project('spitter-persistence-jdbc-template') {
+    dependencies {
+        compile project(':spitter-domain-plain')
+        compile project(':spitter-persistence-common')
+    }
+}

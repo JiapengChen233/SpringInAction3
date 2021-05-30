@@ -1,4 +1,5 @@
 rootProject.name = 'Spitter'
 include 'spitter-domain-plain'
 include 'spitter-persistence-common'
+include 'spitter-persistence-jdbc-template'
 

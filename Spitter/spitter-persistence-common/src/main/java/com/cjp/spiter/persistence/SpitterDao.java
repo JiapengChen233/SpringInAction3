@@ -13,11 +13,7 @@ public interface SpitterDao {
 
     Spitter getSpitterById(long id);
 
-    List<Spittle> getRecentSpittle();
-
-    void saveSpittle(Spittle spittle);
-
-    List<Spittle> getSpittlesByUsername(Spitter spitter);
+    List<Spitter> findAllSpitters();
 
     Spitter getSpitterByUsername(String username);
 
@@ -25,5 +21,10 @@ public interface SpitterDao {
 
     Spittle getSpittleById(long id);
 
-    List<Spitter> findAllSpitters();
+    List<Spittle> getRecentSpittle();
+
+    void saveSpittle(Spittle spittle);
+
+    List<Spittle> getSpittlesByUsername(Spitter spitter);
+
 }

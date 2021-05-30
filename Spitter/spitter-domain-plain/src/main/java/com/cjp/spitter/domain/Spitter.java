@@ -1,6 +1,7 @@
 package com.cjp.spitter.domain;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Spitter implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -60,4 +61,28 @@ public class Spitter implements Serializable {
         this.updateByEmail = updateByEmail;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Spitter spitter = (Spitter) o;
+        return updateByEmail == spitter.updateByEmail && Objects.equals(id, spitter.id) && Objects.equals(username, spitter.username) && Objects.equals(password, spitter.password) && Objects.equals(fullName, spitter.fullName) && Objects.equals(email, spitter.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, fullName, email, updateByEmail);
+    }
+
+    @Override
+    public String toString() {
+        return "Spitter{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", updateByEmail=" + updateByEmail +
+                '}';
+    }
 }
