@@ -49,3 +49,22 @@ project('spitter-persistence-jdbc-template') {
         compile project(':spitter-persistence-common')
     }
 }
+
+project('spitter-persistence-hibernate-template') {
+    dependencies {
+        compile project(':spitter-domain-plain')
+        compile project(':spitter-persistence-common')
+        compile "org.hibernate:hibernate-core:3.3.2.GA"
+        compile "org.springframework:spring-orm:3.0.0.RELEASE"
+        compile "org.slf4j:slf4j-api:1.6.1"
+        compile "javassist:javassist:3.9.0.GA"
+    }
+
+    sourceSets {
+        test {
+            resources {
+                srcDirs = ['src/test/java', '/src/test/resources', '../spitter-persistence-common/src/test/resources']
+            }
+        }
+    }
+}
