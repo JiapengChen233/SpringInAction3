@@ -97,3 +97,19 @@ project('spitter-persistence-hibernate-contextual-sessions') {
         }
     }
 }
+
+project('spitter-persistence-jpa') {
+    dependencies {
+        compile project(':spitter-domain-jpa')
+        compile project(':spitter-persistence-common')
+        compile "org.springframework:spring-orm:3.0.0.RELEASE"
+    }
+
+    sourceSets {
+        test {
+            resources {
+                srcDirs = ['src/test/java', '/src/test/resources', '../spitter-persistence-common/src/test/resources']
+            }
+        }
+    }
+}

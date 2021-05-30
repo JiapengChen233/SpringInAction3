@@ -5,4 +5,5 @@ include 'spitter-persistence-jdbc-template'
 include 'spitter-persistence-hibernate-template'
 include 'spitter-persistence-hibernate-contextual-sessions'
 include 'spitter-domain-jpa'
+include 'spitter-persistence-jpa'
 
