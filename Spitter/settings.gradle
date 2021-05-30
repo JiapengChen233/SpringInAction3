@@ -6,4 +6,6 @@ include 'spitter-persistence-hibernate-template'
 include 'spitter-persistence-hibernate-contextual-sessions'
 include 'spitter-domain-jpa'
 include 'spitter-persistence-jpa'
+include 'spitter-service-common'
+include 'spitter-service-programmatic-tx'
 

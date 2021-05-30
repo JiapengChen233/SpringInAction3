@@ -113,3 +113,19 @@ project('spitter-persistence-jpa') {
         }
     }
 }
+
+project('spitter-service-common') {
+    dependencies {
+        compile project(':spitter-domain-jpa')
+    }
+}
+
+project('spitter-service-programmatic-tx') {
+    dependencies {
+        compile project(':spitter-domain-jpa')
+        compile project(':spitter-persistence-common')
+        compile project(':spitter-service-common')
+        compile "org.springframework:spring-tx:3.0.0.RELEASE"
+        testCompile "org.easymock:easymock:3.0"
+    }
+}
