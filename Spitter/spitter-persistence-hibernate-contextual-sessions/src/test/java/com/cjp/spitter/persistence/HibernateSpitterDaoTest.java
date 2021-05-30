@@ -1,7 +1,6 @@
 package com.cjp.spitter.persistence;
 
 import com.cjp.spitter.domain.Spitter;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.springframework.test.jdbc.SimpleJdbcTestUtils.countRowsInTable;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {

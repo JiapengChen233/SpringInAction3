@@ -8,4 +8,5 @@ include 'spitter-domain-jpa'
 include 'spitter-persistence-jpa'
 include 'spitter-service-common'
 include 'spitter-service-programmatic-tx'
+include 'spitter-service-declarative-tx'
 
