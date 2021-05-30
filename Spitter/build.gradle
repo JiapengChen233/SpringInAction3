@@ -142,3 +142,24 @@ project('spitter-service-declarative-tx') {
         testCompile "org.easymock:easymock:3.0"
     }
 }
+
+project('spitter-service-annotation-tx') {
+    dependencies {
+        compile project(':spitter-domain-jpa')
+        compile project(':spitter-service-common')
+        compile project(':spitter-persistence-common')
+        compile project(':spitter-persistence-jdbc-template')
+        compile "org.springframework:spring-tx:3.0.0.RELEASE"
+        compile "org.springframework:spring-aop:3.0.0.RELEASE"
+        compile "org.aspectj:aspectjrt:1.6.6"
+        compile "org.aspectj:aspectjweaver:1.6.6"
+    }
+
+    sourceSets {
+        test {
+            resources {
+                srcDirs = ['src/test/java', '/src/test/resources', '../spitter-persistence-jdbc-template/src/test/resources']
+            }
+        }
+    }
+}

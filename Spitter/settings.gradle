@@ -9,4 +9,5 @@ include 'spitter-persistence-jpa'
 include 'spitter-service-common'
 include 'spitter-service-programmatic-tx'
 include 'spitter-service-declarative-tx'
+include 'spitter-service-annotation-tx'
 
