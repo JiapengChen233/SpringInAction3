@@ -9,5 +9,6 @@
         </id>
         <property column="text" name="text" type="java.lang.String"/>
         <property column="posted_time" name="postedTime" type="java.util.Date"/>
+        <many-to-one name="spitter" class="com.cjp.spitter.domain.Spitter" column="spitter_id" cascade="save-update" lazy="false" fetch="join"/>
     </class>
 </hibernate-mapping>
