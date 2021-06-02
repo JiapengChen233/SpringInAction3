@@ -48,4 +48,14 @@ public class Spittle implements Serializable {
         this.postedTime = postedTime;
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Spittle{");
+        sb.append("id=").append(id);
+        sb.append(", spitter=").append(spitter);
+        sb.append(", text='").append(text).append('\'');
+        sb.append(", postedTime=").append(postedTime);
+        sb.append('}');
+        return sb.toString();
+    }
 }

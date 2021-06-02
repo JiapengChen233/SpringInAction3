@@ -1,6 +1,6 @@
 package com.cjp.spitter.service;
 
-import com.cjp.spiter.persistence.SpitterDao;
+import com.cjp.spitter.persistence.SpitterDao;
 import com.cjp.spitter.domain.Spitter;
 import com.cjp.spitter.domain.Spittle;
 import org.springframework.transaction.TransactionStatus;
