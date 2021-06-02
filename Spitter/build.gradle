@@ -59,12 +59,4 @@ project('spitter-persistence-hibernate-template') {
         compile "org.slf4j:slf4j-api:1.6.1"
         compile "javassist:javassist:3.9.0.GA"
     }
-
-    sourceSets {
-        test {
-            resources {
-                srcDirs = ['src/test/java', '/src/test/resources', '../spitter-persistence-common/src/test/resources']
-            }
-        }
-    }
 }

@@ -1,4 +1,4 @@
-package com.cjp.spiter.persistence;
+package com.cjp.spitter.persistence;
 
 import com.cjp.spitter.domain.Spitter;
 import com.cjp.spitter.domain.Spittle;
@@ -22,6 +22,8 @@ public interface SpitterDao {
     Spittle getSpittleById(long id);
 
     List<Spittle> getRecentSpittle();
+
+    void addSpittle(Spittle spittle);
 
     void saveSpittle(Spittle spittle);
 
