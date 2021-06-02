@@ -1,6 +1,5 @@
 package com.cjp.spitter.persistence;
 
-import com.cjp.spiter.persistence.SpitterDao;
 import com.cjp.spitter.domain.Spitter;
 import com.cjp.spitter.domain.Spittle;
 import org.springframework.stereotype.Repository;
@@ -39,6 +38,11 @@ public class JpaSpitterDao implements SpitterDao {
     @Override
     public List<Spittle> getRecentSpittle() {
         return em.createQuery(RECENT_SPITTLES).getResultList();
+    }
+
+    @Override
+    public void addSpittle(Spittle spittle) {
+        em.persist(spittle);
     }
 
     @Override

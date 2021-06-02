@@ -1,6 +1,7 @@
 package com.cjp.spitter.persistence;
 
 import com.cjp.spitter.domain.Spitter;
+import com.cjp.spitter.domain.Spittle;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -16,16 +18,16 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "classpath:test-persistence-context.xml",
-        "classpath:test-dataSource-context2.xml",
-        "classpath:test-transaction-context.xml"
+        "classpath:persistence-context.xml",
+        "classpath:dataSource-context2.xml",
+        "classpath:transaction-context.xml"
 })
 @TransactionConfiguration(transactionManager = "txManager", defaultRollback = true)
 @Transactional
 public class HibernateSpitterDaoTest {
 
     @Autowired
-    private HibernateSpitterDao hibernateSpitterDao;
+    private HibernateSpitterDao spitterDao;
 
     @Test
     public void testAddSpitter() {
@@ -35,7 +37,7 @@ public class HibernateSpitterDaoTest {
     @Test
     public void testGetSpitterById() {
         Spitter spitterIn = insertSpitter("username", "password", "fullname", "email", false);
-        Spitter spitterOut = hibernateSpitterDao.getSpitterById(spitterIn.getId());
+        Spitter spitterOut = spitterDao.getSpitterById(spitterIn.getId());
         assertEquals(spitterIn, spitterOut);
     }
 
@@ -43,18 +45,48 @@ public class HibernateSpitterDaoTest {
     public void getFindAllSpitters() {
         insertSpitter("username", "password", "fullname", "email", false);
         insertSpitter("username", "password", "fullname", "email", false);
-        List<Spitter> allSpitters = hibernateSpitterDao.findAllSpitters();
+        List<Spitter> allSpitters = spitterDao.findAllSpitters();
         for (Spitter spitter : allSpitters) {
             System.out.println(spitter);
         }
     }
 
     @Test
-    public void testSaveSpitter() {
-        insertSpitter("username", "password", "fullname", "email", false);
-        Spitter spitterOut = hibernateSpitterDao.getSpitterById(0);
-        spitterOut.setUsername("username2");
-        hibernateSpitterDao.saveSpitter(spitterOut);
+    public void testAddSpittle() {
+        Spitter spitter = insertSpitter("username", "password", "fullname", "email", false);
+        Spittle spittle = insertSpittle(spitter, "text", new Date());
+        spitterDao.addSpittle(spittle);
+    }
+
+    @Test
+    public void testSaveSpittle() {
+        Spittle spittleById = spitterDao.getSpittleById(0);
+        spittleById.setPostedTime(new Date());
+        spitterDao.saveSpittle(spittleById);
+    }
+
+    @Test
+    public void testGetRecentSpittle() {
+        List<Spittle> recentSpittle = spitterDao.getRecentSpittle();
+        for (Spittle spittle : recentSpittle) {
+            System.out.println(spittle);
+        }
+    }
+
+    @Test
+    public void testGetSpittlesByUsername() {
+        Spitter spitter = new Spitter();
+        spitter.setUsername("artnames");
+        List<Spittle> spittlesByUsername = spitterDao.getSpittlesByUsername(spitter);
+        for (Spittle spittle : spittlesByUsername) {
+            System.out.println(spittle);
+        }
+    }
+
+    @Test
+    public void testDeleteSpittle() {
+        Spittle spittleById = spitterDao.getSpittleById(0);
+        spitterDao.deleteSpittle(spittleById.getId());
     }
 
     private Spitter insertSpitter(String username, String password, String fullname, String email, boolean updateByEmail) {
@@ -64,8 +96,16 @@ public class HibernateSpitterDaoTest {
         spitter.setFullName(fullname);
         spitter.setEmail(email);
         spitter.setUpdateByEmail(updateByEmail);
-        hibernateSpitterDao.addSpitter(spitter);
+        spitterDao.addSpitter(spitter);
         assertNotNull(spitter.getId());
         return spitter;
+    }
+
+    private Spittle insertSpittle(Spitter spitter, String text, Date postedTime) {
+        Spittle spittle = new Spittle();
+        spittle.setSpitter(spitter);
+        spittle.setText(text);
+        spittle.setPostedTime(postedTime);
+        return spittle;
     }
 }

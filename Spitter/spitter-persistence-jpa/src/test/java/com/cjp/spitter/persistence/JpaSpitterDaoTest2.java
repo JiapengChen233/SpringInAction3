@@ -14,8 +14,8 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "classpath:test-persistence-context2.xml",
-        "classpath:test-dataSource-context.xml"
+        "classpath:persistence-context2.xml",
+        "classpath:dataSource-context.xml"
 })
 public class JpaSpitterDaoTest2 {
 

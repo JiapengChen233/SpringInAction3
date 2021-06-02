@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "classpath:test-dataSource-context.xml",
-        "classpath:test-service-context.xml",
-        "classpath:test-persistence-context.xml"
+        "classpath:dataSource-context.xml",
+        "classpath:service-context.xml",
+        "classpath:persistence-context.xml"
 })
 public class SpitterServiceTest {
 

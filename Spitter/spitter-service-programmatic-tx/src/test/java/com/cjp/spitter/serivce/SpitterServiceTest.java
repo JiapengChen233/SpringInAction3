@@ -2,7 +2,7 @@ package com.cjp.spitter.serivce;
 
 import org.junit.Before;
 import org.junit.Test;
-import com.cjp.spiter.persistence.SpitterDao;
+import com.cjp.spitter.persistence.SpitterDao;
 import com.cjp.spitter.domain.Spitter;
 import com.cjp.spitter.service.SpitterServiceImpl;
 import org.springframework.transaction.PlatformTransactionManager;
