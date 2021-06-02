@@ -8,71 +8,94 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
 import java.util.List;
-
-import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "classpath:test-persistence-context.xml",
-        "classpath:test-dataSource-context.xml"
+        "classpath:persistence-context.xml",
+        "classpath:dataSource-context.xml",
 })
 public class JpaSpitterDaoTest {
 
     @Autowired
-    private JpaSpitterDao jpaSpitterDao;
+    private JpaSpitterDao spitterDao;
 
     @Test
     public void testAddSpitter() {
-        Spitter spitter = new Spitter();
-        spitter.setUsername("Ronaldo");
-        spitter.setPassword("123456");
-        spitter.setFullName("RonaldoChen");
-        spitter.setEmail("123@gmail.com");
-        spitter.setUpdateByEmail(false);
-        jpaSpitterDao.addSpitter(spitter);
+        insertSpitter("username", "password", "fullname", "email", false);
     }
 
     @Test
     public void testGetSpitterById() {
-        Spitter spitter = jpaSpitterDao.getSpitterById(0L);
-        System.out.println(spitter);
+        Spitter spitterOut = spitterDao.getSpitterById(0);
+        System.out.println(spitterOut);
     }
 
     @Test
-    public void testFindAllSpitters() {
-        List<Spitter> allSpitters = jpaSpitterDao.findAllSpitters();
+    public void getFindAllSpitters() {
+        insertSpitter("username", "password", "fullname", "email", false);
+        insertSpitter("username", "password", "fullname", "email", false);
+        List<Spitter> allSpitters = spitterDao.findAllSpitters();
         for (Spitter spitter : allSpitters) {
             System.out.println(spitter);
         }
     }
 
     @Test
+    public void testAddSpittle() {
+        Spitter spitter = insertSpitter("username", "password", "fullname", "email", false);
+        Spittle spittle = insertSpittle(spitter, "text", new Date());
+        spitterDao.addSpittle(spittle);
+    }
+
+    @Test
+    public void testSaveSpittle() {
+        Spittle spittleById = spitterDao.getSpittleById(0);
+        spittleById.setPostedTime(new Date());
+        spitterDao.saveSpittle(spittleById);
+    }
+
+    @Test
     public void testGetRecentSpittle() {
-        List<Spittle> recentSpittle = jpaSpitterDao.getRecentSpittle();
+        List<Spittle> recentSpittle = spitterDao.getRecentSpittle();
         for (Spittle spittle : recentSpittle) {
             System.out.println(spittle);
         }
     }
 
     @Test
-    public void testGetSpitterByUsername() {
-        Spitter spitter = jpaSpitterDao.getSpitterByUsername("habuma");
-        assertNotNull(spitter);
-    }
-
-    @Test
     public void testGetSpittlesByUsername() {
         Spitter spitter = new Spitter();
-        spitter.setUsername("habuma");
-        List<Spittle> spittles = jpaSpitterDao.getSpittlesByUsername(spitter);
-        for (Spittle spittle : spittles) {
+        spitter.setUsername("artnames");
+        List<Spittle> spittlesByUsername = spitterDao.getSpittlesByUsername(spitter);
+        for (Spittle spittle : spittlesByUsername) {
             System.out.println(spittle);
         }
     }
 
     @Test
-    public void testDeleteSpittleById() {
-        jpaSpitterDao.deleteSpittle(1);
+    public void testDeleteSpittle() {
+        Spittle spittleById = spitterDao.getSpittleById(0);
+        spitterDao.deleteSpittle(spittleById.getId());
+    }
+
+    private Spitter insertSpitter(String username, String password, String fullname, String email, boolean updateByEmail) {
+        Spitter spitter = new Spitter();
+        spitter.setUsername(username);
+        spitter.setPassword(password);
+        spitter.setFullName(fullname);
+        spitter.setEmail(email);
+        spitter.setUpdateByEmail(updateByEmail);
+        spitterDao.addSpitter(spitter);
+        return spitter;
+    }
+
+    private Spittle insertSpittle(Spitter spitter, String text, Date postedTime) {
+        Spittle spittle = new Spittle();
+        spittle.setSpitter(spitter);
+        spittle.setText(text);
+        spittle.setPostedTime(postedTime);
+        return spittle;
     }
 }

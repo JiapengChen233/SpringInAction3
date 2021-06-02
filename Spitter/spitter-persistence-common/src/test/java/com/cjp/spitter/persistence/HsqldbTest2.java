@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "classpath:test-dataSource-context2.xml"
+        "classpath:dataSource-context2.xml"
 })
 public class HsqldbTest2 {
 

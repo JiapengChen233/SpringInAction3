@@ -59,14 +59,6 @@ project('spitter-persistence-hibernate-template') {
         compile "org.slf4j:slf4j-api:1.6.1"
         compile "javassist:javassist:3.9.0.GA"
     }
-
-    sourceSets {
-        test {
-            resources {
-                srcDirs = ['src/test/java', '/src/test/resources', '../spitter-persistence-common/src/test/resources']
-            }
-        }
-    }
 }
 
 project('spitter-domain-jpa') {
@@ -88,14 +80,6 @@ project('spitter-persistence-hibernate-contextual-sessions') {
         compile "javassist:javassist:3.9.0.GA"
         compile "cglib:cglib-nodep:2.2"
     }
-
-    sourceSets {
-        test {
-            resources {
-                srcDirs = ['src/test/java', '/src/test/resources', '../spitter-persistence-common/src/test/resources']
-            }
-        }
-    }
 }
 
 project('spitter-persistence-jpa') {
@@ -103,14 +87,6 @@ project('spitter-persistence-jpa') {
         compile project(':spitter-domain-jpa')
         compile project(':spitter-persistence-common')
         compile "org.springframework:spring-orm:3.0.0.RELEASE"
-    }
-
-    sourceSets {
-        test {
-            resources {
-                srcDirs = ['src/test/java', '/src/test/resources', '../spitter-persistence-common/src/test/resources']
-            }
-        }
     }
 }
 
