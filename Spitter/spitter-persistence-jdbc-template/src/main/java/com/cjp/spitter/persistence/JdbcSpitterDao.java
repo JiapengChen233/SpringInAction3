@@ -34,6 +34,10 @@ public class JdbcSpitterDao extends SimpleJdbcDaoSupport implements SpitterDao {
         spitter.setId(queryForIdentity());
     }
 
+    private long queryForIdentity() {
+        return getSimpleJdbcTemplate().queryForLong("CALL IDENTITY()");
+    }
+
     @Override
     public void saveSpitter(Spitter spitter) {
         getSimpleJdbcTemplate().update(SQL_UPDATE_SPITTER,
