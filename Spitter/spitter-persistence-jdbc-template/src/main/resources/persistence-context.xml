@@ -8,7 +8,7 @@
         <constructor-arg ref="dataSource"/>
     </bean>
 
-    <bean id="spitterDao" class="com.cjp.spitter.persistence.NamedParameterJdbcTemplateSpitterDao">
+    <bean id="spitterDao" class="com.cjp.spitter.persistence.SimpleJdbcTemplateSpitterDao">
         <property name="simpleJdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 </beans>

@@ -1,6 +1,6 @@
 package com.cjp.spitter.service;
 
-import com.cjp.spiter.persistence.SpitterDao;
+import com.cjp.spitter.persistence.SpitterDao;
 import com.cjp.spitter.domain.Spitter;
 import org.junit.runner.RunWith;
 import org.junit.Before;
@@ -12,8 +12,8 @@ import static org.easymock.EasyMock.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "classpath:test-dataSource-context.xml",
-        "classpath:test-service-context.xml",
+        "classpath:dataSource-context.xml",
+        "classpath:service-context.xml",
 })
 public class SpitterServiceTest {
 
