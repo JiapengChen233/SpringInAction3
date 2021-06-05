@@ -5,6 +5,25 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
 
+    <welcome-file-list>
+        <welcome-file>/home</welcome-file>
+    </welcome-file-list>
+
+    <context-param>
+        <!-- 相对于应用程序根目录 -->
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:dataSource-context.xml
+            classpath:persistence-context.xml
+            classpath:service-context.xml
+        </param-value>
+    </context-param>
+
+    <!-- 加载其他配置文件到Spring应用上下文中，默认加载/WEB-INF/applicationContext.xml -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>spitter</servlet-name>
         <!-- 自动加载位于WEB-INF目录下的spitter-servlet.xml -->
@@ -17,5 +36,16 @@
         <!-- 处理所有请求，包括对静态资源的请求 -->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <!-- 配置SpringMVC支持除GET和POST之外的其他方法 -->
+    <filter>
+        <filter-name>httpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>httpMethodFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>

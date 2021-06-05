@@ -137,11 +137,16 @@ project('spitter-web') {
     apply plugin: 'war'
 
     dependencies {
+        compile project(':spitter-domain-jpa')
+        compile project(':spitter-persistence-common')
+        compile project(':spitter-persistence-jdbc-template')
+        compile project(':spitter-service-common')
+        compile project(':spitter-service-annotation-tx')
         compile "org.springframework:spring-webmvc:3.0.4.RELEASE"
-        compile("javax.servlet:servlet-api:2.5")
+        compile "javax.servlet:servlet-api:2.5"
+        compile "javax.servlet:jstl:1.2"
         compile "org.apache.tiles:tiles-core:2.2.2"
         compile "org.apache.tiles:tiles-jsp:2.2.2"
         compile "org.slf4j:slf4j-api:1.6.1"
-        compile ("javax.servlet:jstl:1.2")
     }
 }
