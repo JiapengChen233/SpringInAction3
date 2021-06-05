@@ -7,7 +7,7 @@ allprojects {
 
     repositories {
         mavenLocal()
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+//        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         mavenCentral()
     }
 }
@@ -21,9 +21,9 @@ subprojects {
     apply plugin: 'idea'
 
     dependencies {
-        compile "org.springframework:spring-context:3.0.0.RELEASE"
+        compile "org.springframework:spring-context:3.0.4.RELEASE"
         testCompile "junit:junit:$junitVersion"
-        testCompile "org.springframework:spring-test:3.0.0.RELEASE"
+        testCompile "org.springframework:spring-test:3.0.4.RELEASE"
     }
 
     [compileJava, compileTestJava]*.options*.compilerArgs = ['-Xlint:all']
@@ -37,7 +37,7 @@ project('spitter-domain-plain') {
 project('spitter-persistence-common') {
     dependencies {
         compile project(':spitter-domain-plain')
-        compile "org.springframework:spring-jdbc:3.0.0.RELEASE"
+        compile "org.springframework:spring-jdbc:3.0.4.RELEASE"
         compile "commons-dbcp:commons-dbcp:1.4"
         compile "org.hsqldb:hsqldb:2.4.1"
     }
@@ -55,7 +55,7 @@ project('spitter-persistence-hibernate-template') {
         compile project(':spitter-domain-plain')
         compile project(':spitter-persistence-common')
         compile "org.hibernate:hibernate-core:3.3.2.GA"
-        compile "org.springframework:spring-orm:3.0.0.RELEASE"
+        compile "org.springframework:spring-orm:3.0.4.RELEASE"
         compile "org.slf4j:slf4j-api:1.6.1"
         compile "javassist:javassist:3.9.0.GA"
     }
@@ -75,7 +75,7 @@ project('spitter-persistence-hibernate-contextual-sessions') {
         compile project(':spitter-persistence-common')
         compile "org.hibernate:hibernate-core:3.3.2.GA"
         compile "org.hibernate:hibernate-annotations:3.4.0.GA"
-        compile "org.springframework:spring-orm:3.0.0.RELEASE"
+        compile "org.springframework:spring-orm:3.0.4.RELEASE"
         compile "org.slf4j:slf4j-api:1.6.1"
         compile "javassist:javassist:3.9.0.GA"
         compile "cglib:cglib-nodep:2.2"
@@ -86,7 +86,7 @@ project('spitter-persistence-jpa') {
     dependencies {
         compile project(':spitter-domain-jpa')
         compile project(':spitter-persistence-common')
-        compile "org.springframework:spring-orm:3.0.0.RELEASE"
+        compile "org.springframework:spring-orm:3.0.4.RELEASE"
     }
 }
 
@@ -101,7 +101,7 @@ project('spitter-service-programmatic-tx') {
         compile project(':spitter-domain-jpa')
         compile project(':spitter-persistence-common')
         compile project(':spitter-service-common')
-        compile "org.springframework:spring-tx:3.0.0.RELEASE"
+        compile "org.springframework:spring-tx:3.0.4.RELEASE"
         testCompile "org.easymock:easymock:3.0"
     }
 }
@@ -111,8 +111,8 @@ project('spitter-service-declarative-tx') {
         compile project(':spitter-domain-jpa')
         compile project(':spitter-service-common')
         compile project(':spitter-persistence-common')
-        compile "org.springframework:spring-tx:3.0.0.RELEASE"
-        compile "org.springframework:spring-aop:3.0.0.RELEASE"
+        compile "org.springframework:spring-tx:3.0.4.RELEASE"
+        compile "org.springframework:spring-aop:3.0.4.RELEASE"
         compile "org.aspectj:aspectjrt:1.6.6"
         compile "org.aspectj:aspectjweaver:1.6.6"
         testCompile "org.easymock:easymock:3.0"
@@ -125,8 +125,8 @@ project('spitter-service-annotation-tx') {
         compile project(':spitter-service-common')
         compile project(':spitter-persistence-common')
         compile project(':spitter-persistence-jdbc-template')
-        compile "org.springframework:spring-tx:3.0.0.RELEASE"
-        compile "org.springframework:spring-aop:3.0.0.RELEASE"
+        compile "org.springframework:spring-tx:3.0.4.RELEASE"
+        compile "org.springframework:spring-aop:3.0.4.RELEASE"
         compile "org.aspectj:aspectjrt:1.6.6"
         compile "org.aspectj:aspectjweaver:1.6.6"
     }
@@ -137,7 +137,11 @@ project('spitter-web') {
     apply plugin: 'war'
 
     dependencies {
-        compile "org.springframework:spring-webmvc:3.0.0.RELEASE"
-        compile ("javax.servlet:servlet-api:2.5")
+        compile "org.springframework:spring-webmvc:3.0.4.RELEASE"
+        compile("javax.servlet:servlet-api:2.5")
+        compile "org.apache.tiles:tiles-core:2.2.2"
+        compile "org.apache.tiles:tiles-jsp:2.2.2"
+        compile "org.slf4j:slf4j-api:1.6.1"
+        compile ("javax.servlet:jstl:1.2")
     }
 }

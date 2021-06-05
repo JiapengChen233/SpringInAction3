@@ -1,0 +1,14 @@
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition name="template" template="/WEB-INF/views/layout.jsp">
+        <put-attribute name="top" value="/WEB-INF/views/top.jsp"/>
+        <put-attribute name="side" value="/WEB-INF/views/side.jsp"/>
+    </definition>
+
+    <definition name="hello" extends="template">
+        <put-attribute name="content" value="/WEB-INF/views/hello.jsp"/>
+    </definition>
+
+</tiles-definitions>
