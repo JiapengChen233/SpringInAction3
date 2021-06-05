@@ -10,8 +10,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
 import java.util.List;
 
 @Controller
@@ -42,11 +45,39 @@ public class SpitterController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String addSpitterFromForm(@Valid Spitter spitter, BindingResult bindingResult) {
+    public String addSpitterFromForm(@Valid Spitter spitter,
+                                     BindingResult bindingResult,
+                                     @RequestParam(value = "image", required = false) MultipartFile image) {
         if (bindingResult.hasErrors()) {
             return "spitters/edit";
         }
+        try {
+            if (!image.isEmpty()) {
+                validateImage(image);
+                saveImage(spitter.getUsername() + ".jpg", image);
+            }
+        } catch (RuntimeException e) {
+            bindingResult.reject(e.getMessage());
+            return "spitters/edit";
+        }
+
         spitterService.saveSpitter(spitter);
+
         return "redirect:/spitters/" + spitter.getUsername();
+    }
+
+    private void validateImage(MultipartFile image) {
+        if (!image.getContentType().equals("image/jpeg")) {
+            throw new RuntimeException("Only JPG images accepted");
+        }
+    }
+
+    private void saveImage(String filename, MultipartFile image) throws RuntimeException {
+        try {
+            File file = new File("D:/" + filename);
+            image.transferTo(file);
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to save image", e);
+        }
     }
 }
