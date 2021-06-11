@@ -2,7 +2,7 @@
 
 <div>
     <div class="msg"><h3>Please Sign In!</h3></div>
-    <form class="signin" action="<s:url value="/static/j_spring_security_check"/>" method="post">
+    <form class="signin" action="<s:url value="/j_spring_security_check"/>" method="post">
         <fieldset>
             <div>
                 <label for="j_username">Username or Email</label>
