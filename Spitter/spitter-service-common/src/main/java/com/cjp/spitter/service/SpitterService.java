@@ -4,6 +4,7 @@ import com.cjp.spitter.domain.Spitter;
 import com.cjp.spitter.domain.Spittle;
 import org.springframework.security.access.annotation.Secured;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 public interface SpitterService {
@@ -11,6 +12,7 @@ public interface SpitterService {
 
     Spitter getSpitter(long id);
 
+    @RolesAllowed("ROLE_ADMIN")
     Spitter getSpitter(String username);
 
     List<Spitter> getAllSpitters();

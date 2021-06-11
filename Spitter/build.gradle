@@ -95,6 +95,7 @@ project('spitter-service-common') {
     dependencies {
         compile project(':spitter-domain-jpa')
         compile "org.springframework.security:spring-security-core:3.0.4.RELEASE"
+        compile "javax.annotation:jsr250-api:1.0"
     }
 }
 

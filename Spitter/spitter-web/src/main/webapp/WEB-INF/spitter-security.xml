@@ -21,6 +21,8 @@
         <authentication-provider user-service-ref="userService"/>
     </authentication-manager>
 
-    <global-method-security secured-annotations="enabled" />
+<!--    <global-method-security secured-annotations="enabled" />-->
+
+    <global-method-security jsr250-annotations="enabled" />
 
 </beans:beans>
