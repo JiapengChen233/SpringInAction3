@@ -25,5 +25,14 @@
 
     <!--    <global-method-security jsr250-annotations="enabled" />-->
 
-    <global-method-security pre-post-annotations="enabled"/>
+    <global-method-security pre-post-annotations="enabled">
+        <expression-handler ref="expressionHandler"/>
+    </global-method-security>
+
+    <beans:bean id="expressionHandler"
+                class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
+        <beans:property name="permissionEvaluator">
+            <beans:bean class="com.cjp.spitter.security.SpittlePermissionEvaluator"/>
+        </beans:property>
+    </beans:bean>
 </beans:beans>

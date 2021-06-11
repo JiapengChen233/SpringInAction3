@@ -3,6 +3,8 @@ package com.cjp.spitter.service;
 import com.cjp.spitter.domain.Spitter;
 import com.cjp.spitter.domain.Spittle;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.annotation.security.RolesAllowed;
@@ -15,7 +17,8 @@ public interface SpitterService {
 
     Spitter getSpitter(long id);
 
-    @RolesAllowed("ROLE_ADMIN")
+    @PostAuthorize("returnObject.username == principal.username")
+    @RolesAllowed("ROLE_SPITTER")
     Spitter getSpitter(String username);
 
     List<Spitter> getAllSpitters();
@@ -30,7 +33,8 @@ public interface SpitterService {
 
     List<Spittle> getSpittlesForSpitter(Spitter spitter);
 
-    @Secured("ROLE_ADMIN")
+    @PostFilter("hasPermission(filterObject, 'delete')")
+    @Secured("ROLE_SPITTER")
     List<Spittle> getSpittlesForSpitter(String username);
 
     void startFollowing(Spitter follower, Spitter followee);
