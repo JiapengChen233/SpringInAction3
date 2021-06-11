@@ -144,6 +144,11 @@ project('spitter-web') {
         compile project(':spitter-service-common')
         compile project(':spitter-service-annotation-tx')
         compile "org.springframework:spring-webmvc:3.0.4.RELEASE"
+        compile "org.springframework.security:spring-security-core:3.0.4.RELEASE"
+        compile "org.springframework.security:spring-security-web:3.0.4.RELEASE"
+        compile "org.springframework.security:spring-security-config:3.0.4.RELEASE"
+        compile "org.springframework.security:spring-security-taglibs:3.0.4.RELEASE"
+        compile "org.springframework.security:spring-security-ldap:3.0.4.RELEASE"
         compile "javax.servlet:servlet-api:2.5"
         compile "javax.servlet:jstl:1.2"
         compile "org.apache.tiles:tiles-core:2.2.2"

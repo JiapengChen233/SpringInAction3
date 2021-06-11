@@ -10,5 +10,4 @@
     <definition name="hello" extends="template">
         <put-attribute name="content" value="/WEB-INF/views/hello.jsp"/>
     </definition>
-
 </tiles-definitions>
