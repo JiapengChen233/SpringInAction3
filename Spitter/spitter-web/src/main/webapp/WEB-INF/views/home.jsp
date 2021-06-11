@@ -28,7 +28,7 @@
         </ol>
     </sec:authorize>
 
-    <%-- 只有拥有ROLE_ADMIN权限才显示 --%>
+    <%-- 只有拥有ROLE_SPITTER权限才显示 --%>
     <sec:authorize url="/sayHello">
         <s:url value="/sayHello" var="hello_url" /><br />
         <a href="${hello_url}">Hello</a>

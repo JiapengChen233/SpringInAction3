@@ -2,6 +2,7 @@ package com.cjp.spitter.service;
 
 import com.cjp.spitter.domain.Spitter;
 import com.cjp.spitter.domain.Spittle;
+import org.springframework.security.access.annotation.Secured;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public interface SpitterService {
 
     List<Spittle> getSpittlesForSpitter(Spitter spitter);
 
+    @Secured("ROLE_ADMIN")
     List<Spittle> getSpittlesForSpitter(String username);
 
     void startFollowing(Spitter follower, Spitter followee);

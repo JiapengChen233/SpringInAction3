@@ -94,6 +94,7 @@ project('spitter-persistence-jpa') {
 project('spitter-service-common') {
     dependencies {
         compile project(':spitter-domain-jpa')
+        compile "org.springframework.security:spring-security-core:3.0.4.RELEASE"
     }
 }
 
