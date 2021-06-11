@@ -17,7 +17,7 @@
             classpath:persistence-context.xml
             classpath:service-context.xml
             /WEB-INF/spitter-security.xml
-            /WEB-INF/spitter-security-jdbc.xml
+            /WEB-INF/spitter-security-ldap.xml
         </param-value>
     </context-param>
 
