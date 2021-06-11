@@ -7,17 +7,8 @@
                                  http://www.springframework.org/schema/security
                                  http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http auto-config="true" use-expressions="true">
-        <form-login login-page="/login"
-                    login-processing-url="/j_spring_security_check"
-                    authentication-failure-url="/login?login_error=t"/>
-        <logout logout-url="/j_spring_security_logout"/>
-        <intercept-url pattern="/sayHello" access="hasRole('ROLE_SPITTER')"/>
-    </http>
-
-    <!-- 注册认证管理器 -->
-    <authentication-manager>
-        <authentication-provider user-service-ref="userService"/>
-    </authentication-manager>
+    <jdbc-user-service id="userService" data-source-ref="dataSource"
+                       users-by-username-query="select username, password, true from spitter where username=?"
+                       authorities-by-username-query="select username,'ROLE_SPITTER' from spitter where username=?"/>
 
 </beans:beans>
