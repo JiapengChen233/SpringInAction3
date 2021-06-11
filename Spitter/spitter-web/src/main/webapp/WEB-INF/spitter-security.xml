@@ -13,6 +13,7 @@
                     authentication-failure-url="/login?login_error=t"/>
         <logout logout-url="/j_spring_security_logout"/>
         <intercept-url pattern="/sayHello" access="hasRole('ROLE_SPITTER')"/>
+        <remember-me key="spitterKey" token-validity-seconds="2419200"/>
     </http>
 
     <!-- 注册认证管理器 -->
