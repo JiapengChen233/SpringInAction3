@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'com.cjp.pizza'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal();
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '3.0.5.RELEASE'
+    compile group: 'log4j', name: 'log4j', version: '1.2.13'
+    compile group: 'org.springframework.webflow', name: 'spring-webflow', version: '2.2.1.RELEASE'
+    compile group: 'org.springframework.webflow', name: 'spring-binding', version: '2.2.1.RELEASE'
+    compile group: 'commons-lang', name: 'commons-lang', version: '2.4'
+    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+}

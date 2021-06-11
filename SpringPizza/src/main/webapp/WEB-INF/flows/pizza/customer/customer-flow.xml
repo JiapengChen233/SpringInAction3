@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+    <var name="customer" class="com.cjp.pizza.domain.Customer"/>
+
+    <view-state id="welcome"> <!-- 欢迎顾客 -->
+        <transition on="phoneEntered" to="lookupCustomer"/>
+    </view-state>
+
+    <action-state id="lookupCustomer"> <!-- 查找顾客 -->
+        <evaluate result="customer" expression="pizzaFlowActions.lookupCustomer(requestParameters.phoneNumber)"/>
+        <transition to="registrationForm" on-exception="com.cjp.pizza.exception.CustomerNotFoundException"/>
+        <transition to="customerReady"/>
+    </action-state>
+
+    <view-state id="registrationForm" model="customer"> <!-- 注册新顾客 -->
+        <on-entry>
+            <evaluate expression="customer.phoneNumber = requestParameters.phoneNumber"/>
+        </on-entry>
+        <transition on="submit" to="checkDeliveryArea"/>
+    </view-state>
+
+    <decision-state id="checkDeliveryArea"> <!-- 检查配送区域 -->
+        <if test="pizzaFlowActions.checkDeliveryArea(customer.zipCode)"
+            then="addCustomer"
+            else="deliveryWarning"/>
+    </decision-state>
+
+    <view-state id="deliveryWarning"> <!-- 显示配送警告 -->
+        <transition on="accept" to="addCustomer"/>
+    </view-state>
+
+    <action-state id="addCustomer"> <!-- 添加顾客 -->
+        <evaluate expression="pizzaFlowActions.addCustomer(customer)"/>
+        <transition to="customerReady"/>
+    </action-state>
+
+    <end-state id="cancel"/>
+    <end-state id="customerReady">
+        <output name="customer"/>
+    </end-state>
+
+    <global-transitions>
+        <transition on="cancel" to="cancel"/>
+    </global-transitions>
+</flow>
