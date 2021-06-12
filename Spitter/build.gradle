@@ -174,6 +174,7 @@ project('remoting-client') {
         compile "org.springframework:spring-web:3.0.4.RELEASE"
         compile "org.springframework:spring-context:3.0.4.RELEASE"
         compile "cglib:cglib-nodep:2.2"
+        compile "com.caucho:hessian:3.1.5"
     }
 }
 
@@ -186,5 +187,21 @@ project('remoting-rmi') {
         compile project(':spitter-service-annotation-tx')
         compile "org.springframework:spring-context:3.0.4.RELEASE"
         compile "cglib:cglib-nodep:2.2"
+    }
+}
+
+project('remoting-hessian') {
+    apply plugin: 'java'
+    apply plugin: 'war'
+
+    dependencies {
+        compile project(':spitter-domain-jpa')
+        compile project(':spitter-persistence-common')
+        compile project(':spitter-persistence-jdbc-template')
+        compile project(':spitter-service-common')
+        compile project(':spitter-service-annotation-tx')
+        compile "org.springframework:spring-webmvc:3.0.4.RELEASE"
+        compile "cglib:cglib-nodep:2.2"
+        compile "com.caucho:hessian:3.1.5"
     }
 }

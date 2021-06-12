@@ -1,4 +1,4 @@
-package com.cjp.spitter.client.rmi;
+package com.cjp.spitter.client;
 
 import com.cjp.spitter.domain.Spittle;
 import org.junit.Test;
@@ -11,16 +11,16 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "classpath:rmi-client-context.xml"
+        "classpath:hessian-client-context.xml"
 })
-public class SpitterRmiClientTest {
+public class SpitterRPCClientTest2 {
 
     @Autowired
-    private SpitterRmiClient spitterRmiClient;
+    private SpitterRPCClient spitterRPCClient;
 
     @Test
     public void test() {
-        List<Spittle> spittles = spitterRmiClient.getSpittles("artnames");
+        List<Spittle> spittles = spitterRPCClient.getSpittles("artnames");
         for (Spittle spittle : spittles) {
             System.out.println(spittle);
         }

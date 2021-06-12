@@ -1,4 +1,4 @@
-package com.cjp.spitter.client.rmi;
+package com.cjp.spitter.client;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SpitterRmiClient {
+public class SpitterRPCClient {
 
     @Autowired
     private SpitterService spitterService;
