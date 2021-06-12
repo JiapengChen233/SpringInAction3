@@ -11,4 +11,6 @@ include 'spitter-service-programmatic-tx'
 include 'spitter-service-declarative-tx'
 include 'spitter-service-annotation-tx'
 include 'spitter-web'
+include 'remoting-rmi'
+include 'remoting-client'
 
