@@ -13,7 +13,7 @@
           p:serviceUrl="rmi://localhost/SpitterService"
           p:serviceInterface="com.cjp.spitter.service.SpitterService"/>
 
-    <context:component-scan base-package="com.cjp.spitter.client.rmi"/>
+    <context:component-scan base-package="com.cjp.spitter.client"/>
 
 
 </beans>
