@@ -17,8 +17,8 @@ public interface SpitterService {
 
     Spitter getSpitter(long id);
 
-    @PostAuthorize("returnObject.username == principal.username")
-    @RolesAllowed("ROLE_SPITTER")
+//    @PostAuthorize("returnObject.username == principal.username")
+//    @RolesAllowed("ROLE_SPITTER")
     Spitter getSpitter(String username);
 
     List<Spitter> getAllSpitters();
