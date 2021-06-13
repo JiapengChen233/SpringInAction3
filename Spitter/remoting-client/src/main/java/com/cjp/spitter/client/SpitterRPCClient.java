@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpitterRPCClient {
 
-    @Autowired
+//    @Autowired
     private SpitterService spitterService;
 
     public List<Spittle> getSpittles(String userName) {
