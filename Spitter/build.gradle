@@ -248,16 +248,6 @@ project('remoting-jaxws') {
         compile project(':spitter-persistence-jdbc-template')
         compile project(':spitter-service-common')
         compile project(':spitter-service-annotation-tx')
-        compile "org.springframework:spring-context:3.0.4.RELEASE"
-        compile "org.springframework:spring-webmvc:3.0.4.RELEASE"
-        compile "cglib:cglib-nodep:2.2"
-        compile "javax.servlet:servlet-api:2.5"
-//        compile "org.glassfish.metro:webservices-rt:2.3"
-//        compile "org.glassfish.metro:webservices-extra:2.3"
-//        compile "org.glassfish.metro:webservices-extra-api:2.3"
-//        compile "org.glassfish.metro:webservices-api:2.3"
-//        compile "org.apache.xbean:xbean-spring:2.7"
-//        compile "org.apache.xbean:xbean-spring:2.7"
-//        compile "org.jvnet.jax-ws-commons.spring:jaxws-spring:1.8"
+        compile "org.springframework:spring-web:3.0.4.RELEASE"
     }
 }
