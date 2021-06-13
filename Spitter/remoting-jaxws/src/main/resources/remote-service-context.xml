@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter"/>
+    <bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter"
+          p:baseAddress="http://localhost:8080/"/> <!-- baseAddress默认http://localhost:8080/ -->
 
-    <bean id="spitterServiceEndpoint" class="com.cjp.spitter.jaxws.SpitterServiceEndpoint" />
+
+    <bean id="spitterServiceEndpoint" class="com.cjp.spitter.jaxws.SpitterServiceEndpoint"/>
 </beans>

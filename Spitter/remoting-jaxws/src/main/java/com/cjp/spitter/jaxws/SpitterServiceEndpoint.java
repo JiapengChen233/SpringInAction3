@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 @WebService(serviceName = "SpitterService")
-public class SpitterServiceEndpoint extends SpringBeanAutowiringSupport {
+public class SpitterServiceEndpoint /*extends SpringBeanAutowiringSupport*/ {
 
     @Autowired
     private SpitterService spitterService;
