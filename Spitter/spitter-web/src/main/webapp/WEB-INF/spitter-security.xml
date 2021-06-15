@@ -12,7 +12,7 @@
                     login-processing-url="/j_spring_security_check"
                     authentication-failure-url="/login?login_error=t"/>
         <logout logout-url="/j_spring_security_logout"/>
-        <intercept-url pattern="/sayHello" access="hasRole('ROLE_SPITTER')"/>
+<!--        <intercept-url pattern="/sayHello" access="hasRole('ROLE_SPITTER')"/>-->
         <remember-me key="spitterKey" token-validity-seconds="2419200"/>
     </http>
 
@@ -36,7 +36,7 @@
     <!--        </beans:property>-->
     <!--    </beans:bean>-->
 
-    <global-method-security>
-        <protect-pointcut expression="execution(* com.cjp.spitter.service.*Service.*(..))" access="ROLE_ADMIN"/>
-    </global-method-security>
+<!--    <global-method-security>-->
+<!--        <protect-pointcut expression="execution(* com.cjp.spitter.service.*Service.*(..))" access="ROLE_ADMIN"/>-->
+<!--    </global-method-security>-->
 </beans:beans>
