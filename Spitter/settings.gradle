@@ -18,4 +18,6 @@ include 'remoting-burlap'
 include 'remoting-httpinvoker'
 include 'remoting-jaxws'
 include 'rest-client'
+include 'jms-sender'
+include 'jms-receiver'
 
