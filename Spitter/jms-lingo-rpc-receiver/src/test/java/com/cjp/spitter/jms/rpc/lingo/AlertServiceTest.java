@@ -1,4 +1,4 @@
-package com.cjp.spitter.jms.rpc;
+package com.cjp.spitter.jms.rpc.lingo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

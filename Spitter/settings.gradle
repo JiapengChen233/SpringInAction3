@@ -22,4 +22,6 @@ include 'jms-sender'
 include 'jms-receiver'
 include 'jms-rpc-sender'
 include 'jms-rpc-receiver'
+include 'jms-lingo-rpc-sender'
+include 'jms-lingo-rpc-receiver'
 
