@@ -20,4 +20,6 @@ include 'remoting-jaxws'
 include 'rest-client'
 include 'jms-sender'
 include 'jms-receiver'
+include 'jms-rpc-sender'
+include 'jms-rpc-receiver'
 

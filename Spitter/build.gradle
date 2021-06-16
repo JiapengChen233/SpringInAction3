@@ -281,3 +281,19 @@ project('jms-receiver') {
     }
 }
 
+project('jms-rpc-sender') {
+    dependencies {
+        compile "org.springframework:spring-jms:3.1.0.RELEASE"
+        compile "org.apache.activemq:activemq-core:5.3.0"
+        compile "org.apache.xbean:xbean-spring:3.5"
+    }
+}
+
+project('jms-rpc-receiver') {
+    dependencies {
+        compile "org.springframework:spring-jms:3.1.0.RELEASE"
+        compile "org.apache.activemq:activemq-core:5.3.0"
+        compile "org.apache.xbean:xbean-spring:3.5"
+    }
+}
+
