@@ -40,6 +40,9 @@ public class HomeController {
     @Bean
     public MethodNameBasedMBeanInfoAssembler assembler() {
         MethodNameBasedMBeanInfoAssembler assembler = new MethodNameBasedMBeanInfoAssembler();
+        assembler.setManagedMethods(new String[] {
+                "getSpittlesPerPage", "setSpittlesPerPage"
+        });
         return assembler;
     }
 
