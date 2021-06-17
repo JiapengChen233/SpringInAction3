@@ -4,6 +4,8 @@ import com.cjp.spitter.service.SpitterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jmx.export.MBeanExporter;
+import org.springframework.jmx.export.assembler.MBeanInfoAssembler;
+import org.springframework.jmx.export.assembler.MethodNameBasedMBeanInfoAssembler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,11 +38,18 @@ public class HomeController {
     }
 
     @Bean
-    public MBeanExporter mBeanExporter(HomeController homeController) {
-        MBeanExporter mBeanExporter = new MBeanExporter();
-        Map<String, Object> beans = new HashMap<>();
+    public MethodNameBasedMBeanInfoAssembler assembler() {
+        MethodNameBasedMBeanInfoAssembler assembler = new MethodNameBasedMBeanInfoAssembler();
+        return assembler;
+    }
+
+    @Bean
+    public MBeanExporter mbeanExporter(HomeController homeController, MBeanInfoAssembler assembler) {
+        MBeanExporter exporter = new MBeanExporter();
+        Map<String, Object> beans = new HashMap<String, Object>();
         beans.put("spitter:name=HomeController", homeController);
-        mBeanExporter.setBeans(beans);
-        return mBeanExporter;
+        exporter.setBeans(beans);
+        exporter.setAssembler(assembler);
+        return exporter;
     }
 }
