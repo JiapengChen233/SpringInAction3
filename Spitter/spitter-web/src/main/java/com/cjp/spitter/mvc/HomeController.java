@@ -1,11 +1,12 @@
 package com.cjp.spitter.mvc;
 
+import com.cjp.spitter.jmx.HomeControllerManagedOperations;
 import com.cjp.spitter.service.SpitterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jmx.export.MBeanExporter;
+import org.springframework.jmx.export.assembler.InterfaceBasedMBeanInfoAssembler;
 import org.springframework.jmx.export.assembler.MBeanInfoAssembler;
-import org.springframework.jmx.export.assembler.MethodNameBasedMBeanInfoAssembler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,9 +38,19 @@ public class HomeController {
         this.spittlesPerPage = spittlesPerPage;
     }
 
+//    @Bean
+//    public MethodNameBasedMBeanInfoAssembler assembler() {
+//        MethodNameBasedMBeanInfoAssembler assembler = new MethodNameBasedMBeanInfoAssembler();
+//        assembler.setManagedMethods(new String[] {
+//                "getSpittlesPerPage", "setSpittlesPerPage"
+//        });
+//        return assembler;
+//    }
+
     @Bean
-    public MethodNameBasedMBeanInfoAssembler assembler() {
-        MethodNameBasedMBeanInfoAssembler assembler = new MethodNameBasedMBeanInfoAssembler();
+    public InterfaceBasedMBeanInfoAssembler assembler() {
+        InterfaceBasedMBeanInfoAssembler assembler = new InterfaceBasedMBeanInfoAssembler();
+        assembler.setManagedInterfaces(new Class[]{HomeControllerManagedOperations.class});
         return assembler;
     }
 
