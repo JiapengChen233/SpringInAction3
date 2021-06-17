@@ -9,6 +9,7 @@ import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.jmx.export.assembler.InterfaceBasedMBeanInfoAssembler;
 import org.springframework.jmx.export.assembler.MBeanInfoAssembler;
+import org.springframework.jmx.support.MBeanRegistrationSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -54,20 +55,21 @@ public class HomeController {
 //        return assembler;
 //    }
 
-//    @Bean
-//    public InterfaceBasedMBeanInfoAssembler assembler() {
-//        InterfaceBasedMBeanInfoAssembler assembler = new InterfaceBasedMBeanInfoAssembler();
-//        assembler.setManagedInterfaces(new Class[]{HomeControllerManagedOperations.class});
-//        return assembler;
-//    }
-//
-//    @Bean
-//    public MBeanExporter mbeanExporter(HomeController homeController, MBeanInfoAssembler assembler) {
-//        MBeanExporter exporter = new MBeanExporter();
-//        Map<String, Object> beans = new HashMap<String, Object>();
-//        beans.put("spitter:name=HomeController", homeController);
-//        exporter.setBeans(beans);
-//        exporter.setAssembler(assembler);
-//        return exporter;
-//    }
+    @Bean
+    public InterfaceBasedMBeanInfoAssembler assembler() {
+        InterfaceBasedMBeanInfoAssembler assembler = new InterfaceBasedMBeanInfoAssembler();
+        assembler.setManagedInterfaces(new Class[]{HomeControllerManagedOperations.class});
+        return assembler;
+    }
+
+    @Bean
+    public MBeanExporter mbeanExporter(HomeController homeController, MBeanInfoAssembler assembler) {
+        MBeanExporter exporter = new MBeanExporter();
+        Map<String, Object> beans = new HashMap<String, Object>();
+        beans.put("spitter:name=HomeController", homeController);
+        exporter.setBeans(beans);
+        exporter.setAssembler(assembler);
+        exporter.setRegistrationBehavior(MBeanRegistrationSupport.REGISTRATION_IGNORE_EXISTING);
+        return exporter;
+    }
 }
