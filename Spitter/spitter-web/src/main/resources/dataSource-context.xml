@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/util
+                        http://www.springframework.org/schema/util/spring-util.xsd
                         http://www.springframework.org/schema/jdbc
                         http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
+    <context:property-placeholder location="classpath:/db.properties"
+        ignore-resource-not-found="true"
+        ignore-unresolvable="true"
+        properties-ref="defaultConfiguration" />
+
+    <util:properties id="defaultConfiguration">
+        <prop key="jdbc.url">jdbc:hsqldb:mem:spitter;sql.syntax_ora=true</prop>
+        <prop key="jdbc.driverClassName">org.hsqldb.jdbcDriver</prop>
+        <prop key="jdbc.username">sa</prop>
+    </util:properties>
+
+
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
-        <property name="url" value="jdbc:hsqldb:mem:spitter;sql.syntax_ora=true"/>
-        <property name="username" value="sa"/>
-        <property name="password" value=""/>
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
         <property name="initialSize" value="5"/>
         <property name="maxActive" value="10"/>
         <property name="poolPreparedStatements" value="true"/>
@@ -22,4 +40,5 @@
         <jdbc:script location="classpath:schema.sql"/>
         <jdbc:script location="classpath:data.sql"/>
     </jdbc:initialize-database>
+    
 </beans>
