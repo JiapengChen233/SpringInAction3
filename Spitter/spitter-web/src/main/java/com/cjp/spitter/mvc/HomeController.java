@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-//@ManagedResource(objectName="spitter:name=HomeController") //将HomeController导出为MBean
+@ManagedResource(objectName="spitter:name=HomeController") //将HomeController导出为MBean
 public class HomeController {
 
     public static final int DEFAULT_SPITTLES_PER_PAGE = 25;
@@ -37,13 +37,13 @@ public class HomeController {
     }
 
     //@ManagedOperation@ManagedOperation注解替换@ManagedAttribute注解来标注存取器方法
-//    @ManagedAttribute        //将spittlesPerPage暴露为托管属性
+    @ManagedAttribute        //将spittlesPerPage暴露为托管属性
     public int getSpittlesPerPage() {
         return spittlesPerPage;
     }
 
     //@ManagedOperation@ManagedOperation注解替换@ManagedAttribute注解来标注存取器方法
-//    @ManagedAttribute        //将spittlesPerPage暴露为托管属性
+    @ManagedAttribute        //将spittlesPerPage暴露为托管属性
     public void setSpittlesPerPage(int spittlesPerPage) {
         this.spittlesPerPage = spittlesPerPage;
     }
@@ -57,37 +57,22 @@ public class HomeController {
 //        return assembler;
 //    }
 
-    @Bean
-    public InterfaceBasedMBeanInfoAssembler assembler() {
-        InterfaceBasedMBeanInfoAssembler assembler = new InterfaceBasedMBeanInfoAssembler();
-        assembler.setManagedInterfaces(new Class[]{HomeControllerManagedOperations.class});
-        return assembler;
-    }
+//    @Bean
+//    public InterfaceBasedMBeanInfoAssembler assembler() {
+//        InterfaceBasedMBeanInfoAssembler assembler = new InterfaceBasedMBeanInfoAssembler();
+//        assembler.setManagedInterfaces(new Class[]{HomeControllerManagedOperations.class});
+//        return assembler;
+//    }
+//
+//    @Bean
+//    public MBeanExporter mbeanExporter(HomeController homeController, MBeanInfoAssembler assembler) {
+//        MBeanExporter exporter = new MBeanExporter();
+//        Map<String, Object> beans = new HashMap<String, Object>();
+//        beans.put("spitter:name=HomeController", homeController);
+//        exporter.setBeans(beans);
+//        exporter.setAssembler(assembler);
+//        exporter.setRegistrationBehavior(MBeanRegistrationSupport.REGISTRATION_IGNORE_EXISTING);
+//        return exporter;
+//    }
 
-    @Bean
-    public MBeanExporter mbeanExporter(HomeController homeController, MBeanInfoAssembler assembler) {
-        MBeanExporter exporter = new MBeanExporter();
-        Map<String, Object> beans = new HashMap<String, Object>();
-        beans.put("spitter:name=HomeController", homeController);
-        exporter.setBeans(beans);
-        exporter.setAssembler(assembler);
-        exporter.setRegistrationBehavior(MBeanRegistrationSupport.REGISTRATION_IGNORE_EXISTING);
-        return exporter;
-    }
-
-    //启动一个RMI注册表，并监听1099端口
-    @Bean
-    public RmiRegistryFactoryBean rmiRegistryFB() {
-        RmiRegistryFactoryBean rmiRegistryFB = new RmiRegistryFactoryBean();
-        rmiRegistryFB.setPort(1099);
-        return rmiRegistryFB;
-    }
-
-    //将ConnectorServerFactoryBean绑定到了上面的RMI注册表，该注册表监听本机的1099端口
-    @Bean
-    public ConnectorServerFactoryBean connectorServerFactoryBean() {
-        ConnectorServerFactoryBean csfb = new ConnectorServerFactoryBean();
-        csfb.setServiceUrl("service:jmx:rmi://localhost:1099/jndi/rmi://localhost:1099/spitter");
-        return csfb;
-    }
 }
