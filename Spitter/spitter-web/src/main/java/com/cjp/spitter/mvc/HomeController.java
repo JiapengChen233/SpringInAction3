@@ -55,21 +55,21 @@ public class HomeController {
 //        return assembler;
 //    }
 
-    @Bean
-    public InterfaceBasedMBeanInfoAssembler assembler() {
-        InterfaceBasedMBeanInfoAssembler assembler = new InterfaceBasedMBeanInfoAssembler();
-        assembler.setManagedInterfaces(new Class[]{HomeControllerManagedOperations.class});
-        return assembler;
-    }
-
-    @Bean
-    public MBeanExporter mbeanExporter(HomeController homeController, MBeanInfoAssembler assembler) {
-        MBeanExporter exporter = new MBeanExporter();
-        Map<String, Object> beans = new HashMap<String, Object>();
-        beans.put("spitter:name=HomeController", homeController);
-        exporter.setBeans(beans);
-        exporter.setAssembler(assembler);
-        exporter.setRegistrationBehavior(MBeanRegistrationSupport.REGISTRATION_IGNORE_EXISTING);
-        return exporter;
-    }
+//    @Bean
+//    public InterfaceBasedMBeanInfoAssembler assembler() {
+//        InterfaceBasedMBeanInfoAssembler assembler = new InterfaceBasedMBeanInfoAssembler();
+//        assembler.setManagedInterfaces(new Class[]{HomeControllerManagedOperations.class});
+//        return assembler;
+//    }
+//
+//    @Bean
+//    public MBeanExporter mbeanExporter(HomeController homeController, MBeanInfoAssembler assembler) {
+//        MBeanExporter exporter = new MBeanExporter();
+//        Map<String, Object> beans = new HashMap<String, Object>();
+//        beans.put("spitter:name=HomeController", homeController);
+//        exporter.setBeans(beans);
+//        exporter.setAssembler(assembler);
+//        exporter.setRegistrationBehavior(MBeanRegistrationSupport.REGISTRATION_IGNORE_EXISTING);
+//        return exporter;
+//    }
 }
