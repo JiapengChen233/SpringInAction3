@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -14,9 +15,9 @@
                         http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
     <context:property-placeholder location="classpath:/db.properties"
-        ignore-resource-not-found="true"
-        ignore-unresolvable="true"
-        properties-ref="defaultConfiguration" />
+                                  ignore-resource-not-found="true"
+                                  ignore-unresolvable="true"
+                                  properties-ref="defaultConfiguration"/>
 
     <util:properties id="defaultConfiguration">
         <prop key="jdbc.url">jdbc:hsqldb:mem:spitter;sql.syntax_ora=true</prop>
@@ -40,5 +41,17 @@
         <jdbc:script location="classpath:schema.sql"/>
         <jdbc:script location="classpath:data.sql"/>
     </jdbc:initialize-database>
-    
+
+    <bean class="org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer"
+          p:location="classpath:db.properties">
+        <constructor-arg ref="stringEncrypter"/>
+    </bean>
+
+    <bean id="stringEncrypter" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor"
+          p:config-ref="environmentConfig"/>
+
+    <bean id="environmentConfig" class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig"
+          p:algorithm="PBEWithMD5AndDES"
+          p:passwordEnvName="DB_ENCRYPTION_PWD" />
+
 </beans>

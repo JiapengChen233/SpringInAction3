@@ -167,6 +167,7 @@ project('spitter-web') {
         compile "org.apache.directory.server:apacheds-server-jndi:1.5.5"
         compile "org.codehaus.jackson:jackson-core-asl:1.9.1"
         compile "org.codehaus.jackson:jackson-mapper-asl:1.9.1"
+        compile "org.jasypt:jasypt-spring31:1.9.2"
     }
 }
 
